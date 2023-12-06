@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasi Shuttle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select, input[type="submit"] {
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>RESERVASI SHUTTLE</h2>
+
+    <form action="process_reservation.php" method="post">
+        <label for="idReservasi">ID Reservasi:</label>
+        <input type="text" id="idReservasi" name="idReservasi" readonly><!-- You can generate this dynamically on the server side -->
+
+        <label for="kendaraan">Kendaraan:</label>
+        <select id="kendaraan" name="kendaraan">
+            <option value="shuttle1">Shuttle 1</option>
+            <option value="shuttle2">Shuttle 2</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <input type="submit" value="Buat Reservasi">
+    </form>
+
+</body>
+</html>

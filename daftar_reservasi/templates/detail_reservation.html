@@ -1,0 +1,27 @@
+<!-- detail_reservation.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservation Detail</title>
+</head>
+<body>
+
+<h2>Reservation Detail</h2>
+
+<table border="1">
+    <tr>
+        <th>Reservation ID</th>
+        <th>Room Number</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>{{ data.rsv_id }}</td>
+        <td>{{ data.rnum }}</td>
+        <td>{{ data.datetime }}</td>
+        <td>{% if room.isactive %}Active{% else %}Inactive{% endif %}</td>
+    </tr>
+</table>
+
+</body>
+</html>

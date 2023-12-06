@@ -1,0 +1,24 @@
+<!-- update_reservation.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Pembayaran</title>
+</head>
+<body>
+
+<h2>Update Pembayaran</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="new_status">New Status:</label>
+    <select name="new_status">
+        <option value="CONFIRMING">Menunggu Konfirmasi Pihak Hotel</option>
+        <option value="PAID">Terkonfirmasi oleh Hotel</option>
+        <option value="DENIED">Ditolak oleh Hotel</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!-- update_reservation.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Reservation</title>
+</head>
+<body>
+
+<h2>Update Reservation</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="new_status">New Status:</label>
+    <select name="new_status">
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>
