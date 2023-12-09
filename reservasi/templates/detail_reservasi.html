@@ -1,0 +1,34 @@
+<!-- detail_reservasi.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail Reservasi</title>
+</head>
+<body>
+
+<h2>Detail Reservasi</h2>
+<h3>Detail Kamar</h3>
+
+<table border="1">
+    <tr>
+        <th>Reservation ID</th>
+        <th>Room Number</th>
+        <th>Hotel Name</th>
+        <th>Hotel Branch</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>{{ data.rsv_id }}</td>
+        <td>{{ data.rnum }}</td>
+        <td>{{ data.rHotelName }}</td>
+        <td>{{ data.rHotelBranch }}</td>
+        <td>{{ data.datetime }}</td>
+        <td>{% if room.isactive %}Active{% else %}Inactive{% endif %}</td>
+    </tr>
+</table>
+
+<h3>Detail Shuttle</h3>
+
+</body>
+</html>
