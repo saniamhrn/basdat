@@ -7,7 +7,7 @@
 <body>
 
 <h2>Detail Reservasi</h2>
-<h3>Detail Kamar</h3>
+<h3>KAMAR</h3>
 
 <table border="1">
     <tr>
@@ -28,7 +28,34 @@
     </tr>
 </table>
 
-<h3>Detail Shuttle</h3>
+<h3>SHUTTLE</h3>
+{% if data.shuttle_reserve %}
+    <!--<table border="1">
+        <tr>
+            <th scope="col">ID Reservasi</th>
+            <th scope="col">Nomor Kendaraan</th>
+            <th scope="col">Nomor HP Driver</th>
+            <th scope="col">Tanggal</th>
+        </tr>
+        <tr>
+            <td>{{ data.shuttle_reserve.rsv_id }}</td>
+            <td>{{ data.shuttle_reserve.Vehicle_num }}</td>
+            <td>{{ data.shuttle_reserve.Driver_PhoneNum }}</td>
+            <td>{{ data.shuttle_reserve.Datetime }}</td>
+        </tr>
+    </table>
+    -->
+{% else %}
+    <p>Tidak ada reservasi untuk shuttle pada reservasi ini.</p>
+{% endif %}
+
+<form action="{% url 'daftar_reservasi_kamar' %}" method="get" style="display: inline;">
+    <button type="submit">BACK</button>
+</form>
+
+<form action="{% url 'shuttle_reserve:show_shuttle_reserve' %}" method="get" style="display: inline;">
+    <button type="submit">BUAT RESERVASI SHUTTLE</button>
+</form>
 
 </body>
 </html>

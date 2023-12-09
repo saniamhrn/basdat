@@ -27,3 +27,6 @@ def detail_reservasi(request, rsv_id):
         return HttpResponse("Reservation not found", status=404)
 
     return render(request, 'detail_reservasi.html', {'data': data[0]})
+
+def show_shuttle_reserve(request):
+    return render(request, "shuttle_reserve.html")
