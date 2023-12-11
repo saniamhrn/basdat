@@ -187,12 +187,56 @@
 
     <h1>Daftar Reservasi Kamar</h1>
     <hr />
+    <!-- <div class="btnAdd"> -->
+    <!-- <button id="addRoomBtn" class="button center">Add Room</button> -->
+    <!-- </div> -->
 
     <div class="card">
       <div class="form-container">
         <form action="{% url 'save_complaint' %}" method="post">
           {% csrf_token %}
-          <input type="hidden" id="id" name="id" value="{{ id }}" readonly />
+          <input type="hidden" id="id" name="id" value="{{ data.id }}" readonly />
+          <div>
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value="{{ data.email }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="{{ data.name }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="hotel_name">Hotel Name</label>
+            <input
+              type="text"
+              id="hotel_name"
+              name="hotel_name"
+              value="{{ data.hotel_name }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="hotel_branch">Hotel Branch</label>
+            <input
+              type="text"
+              id="hotel_branch"
+              name="hotel_branch"
+              value="{{ data.hotel_branch }}"
+              readonly
+            />
+          </div>
+
           <div>
             <label for="complain">Complaint Message</label>
             <textarea
@@ -202,12 +246,16 @@
               rows="5"
             ></textarea>
           </div>
-          <a href="{% url 'daftar_reservasi_kamar' %}">
-            <button class="button">
-              Back
-            </button>
-          </a>
+          
           <button class="button" type="submit">Submit</button>
+        </form>
+
+        <form
+          action="{% url 'daftar_reservasi_kamar' %}"
+          method="get"
+          style="display: inline"
+        >
+          <button class="button" type="submit">BACK</button>
         </form>
       </div>
     </div>
