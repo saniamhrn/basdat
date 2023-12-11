@@ -1,35 +1,190 @@
 <!-- detail_reservasi.html -->
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Detail Reservasi</title>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Room Management</title>
+    <style>
+      /* Add your CSS styles for the modal and overlay here */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
 
-<h2>Detail Reservasi</h2>
-<h3>KAMAR</h3>
+      .modal-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
 
-<table border="1">
-    <tr>
-        <th>Reservation ID</th>
-        <th>Room Number</th>
-        <th>Hotel Name</th>
-        <th>Hotel Branch</th>
-        <th>Date</th>
-        <th>Status</th>
-    </tr>
-    <tr>
-        <td>{{ data.rsv_id }}</td>
-        <td>{{ data.rnum }}</td>
-        <td>{{ data.rHotelName }}</td>
-        <td>{{ data.rHotelBranch }}</td>
-        <td>{{ data.datetime }}</td>
-        <td>{% if room.isactive %}Active{% else %}Inactive{% endif %}</td>
-    </tr>
-</table>
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
 
-<h3>SHUTTLE</h3>
-{% if data.shuttle_reserve %}
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: #8e8ffa;
+      }
+
+      tr:hover {
+        background-color: #c2d9ff;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        /* border: 1px solid; */
+        padding: 20px 120px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .button {
+        border: none;
+        background-color: #8e8ffa;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+
+      .button:hover {
+        background-color: #7752fe;
+      }
+
+      .card {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: block;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .center {
+        margin: 0;
+        position: relative;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+
+      .font-p {
+        font-family: "";
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: #7752fe;
+      }
+
+      .topnav a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #8e8ffa;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="" href="#dashboard">Dashboard</a>
+      <a class="active" href="#daftarkamar">Reservasi Pengguna</a>
+      <a href="#fasilitas">Pemesanan Kamar</a>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <h1>Detail Reservasi</h1>
+    <hr />
+
+    <div class="card">
+      <h2>Detail Kamar</h2>
+
+      <table>
+        <thead class="font-p">
+          <tr>
+            <th scope="col">ID Reservasi</th>
+            <th scope="col">Nomor Kamar</th>
+            <th scope="col">Hotel Name</th>
+            <th scope="col">Hotel Branch</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-p" scope="col">{{ data.rsv_id }}</td>
+            <td class="font-p" scope="col">{{ data.rnum }}</td>
+            <td class="font-p" scope="col">{{ data.rhotelname }}</td>
+            <td class="font-p" scope="col">{{ data.rhotelbranch }}</td>
+            <td class="font-p" scope="col">{{ data.datetime }}</td>
+            <td class="font-p" scope="col">{% if data.isactive %}Active{% else %}Inactive{% endif %}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    <h2>Detail Shuttle</h2>
+    {% if data.shuttle_reserve %}
     <!--<table border="1">
         <tr>
             <th scope="col">ID Reservasi</th>
@@ -45,17 +200,25 @@
         </tr>
     </table>
     -->
-{% else %}
-    <p>Tidak ada reservasi untuk shuttle pada reservasi ini.</p>
-{% endif %}
+    {% else %}
+        <p>Tidak ada reservasi untuk shuttle pada reservasi ini.</p>
+    {% endif %}
 
-<form action="{% url 'daftar_reservasi_kamar' %}" method="get" style="display: inline;">
-    <button type="submit">BACK</button>
-</form>
+    <form
+      action="{% url 'daftar_reservasi_kamar' %}"
+      method="get"
+      style="display: inline"
+    >
+      <button class="button" type="submit">BACK</button>
+    </form>
 
-<form action="{% url 'shuttle_reserve:show_shuttle_reserve' %}" method="get" style="display: inline;">
-    <button type="submit">BUAT RESERVASI SHUTTLE</button>
-</form>
-
-</body>
+    <form
+      action="{% url 'shuttle_reserve:show_shuttle_reserve' %}"
+      method="get"
+      style="display: inline"
+    >
+      <button class="button" type="submit">BUAT RESERVASI SHUTTLE</button>
+    </form>
+    </div>
+  </body>
 </html>
