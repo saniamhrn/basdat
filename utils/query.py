@@ -74,4 +74,6 @@ def query(query_str: str):
             hasil = e
             connection.rollback()
 
+    connection.close()
+
     return hasil
