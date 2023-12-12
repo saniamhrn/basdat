@@ -1,3 +1,4 @@
+<!-- detail_reservasi.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,20 +93,6 @@
         border-radius: 10px;
       }
 
-      .button-sm {
-        border: none;
-        background-color: #8e8ffa;
-        padding: 8px 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 12px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-        border-radius: 10px;
-      }
-
       .card {
         max-width: 1000px;
         margin: auto;
@@ -153,6 +140,11 @@
         color: white;
       }
 
+      .form-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+
       .form-container input,
       .form-container textarea {
         width: 100%;
@@ -162,31 +154,104 @@
         border: 1px solid #212121;
         box-sizing: border-box;
       }
+
+      .form-container label {
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+      }
+
+      .form-container button {
+        background-color: #8e8ffa;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+      }
+
+      .button:hover {
+        background-color: #7752fe;
+      }
     </style>
   </head>
   <body>
     <div class="topnav">
-      <a class="" href="#Dashboard">Dashboard</a>
-      <a class="active" href="">Kamar Hotel</a>
-      <a href="#fasilitas">Fasilitas Hotel</a>
-      <a href="#ListReservasi">List Reservasi Hotel</a>
+      <a class="" href="#dashboard">Dashboard</a>
+      <a class="active" href="#daftarkamar">Reservasi Pengguna</a>
+      <a href="#fasilitas">Pemesanan Kamar</a>
     </div>
-    <h1>Tambah Kamar Hotel</h1>
+
+    <div id="overlay" class="overlay"></div>
+
+    <h1>Daftar Reservasi Kamar</h1>
+    <hr />
+    <!-- <div class="btnAdd"> -->
+    <!-- <button id="addRoomBtn" class="button center">Add Room</button> -->
+    <!-- </div> -->
 
     <div class="card">
-      <form action="" method="post" class="form-container">
-        {% csrf_token %}
-        <label for="nokamar">Nomor Kamar:</label>
-        <input type="number" id="nokamar" name="nokamar" required/><br />
-        <br />
-        <label for="harga">Harga:</label>
-        <input type="number" step="100" id="harga" name="harga" required/><br />
-        <br />
-        <label for="lantai">Lantai:</label>
-        <input type="number" id="lantai" name="lantai" required/><br />
-        <br />
-        <button type="submit" class="button">Submit</button>
-      </form>
+      <div class="form-container">
+        <form action="{% url 'save_complaint' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" id="id" name="id" value="{{ data.id }}" readonly />
+          <div>
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value="{{ data.email }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="{{ data.name }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="hotel_name">Hotel Name</label>
+            <input
+              type="text"
+              id="hotel_name"
+              name="hotel_name"
+              value="{{ data.hotel_name }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="hotel_branch">Hotel Branch</label>
+            <input
+              type="text"
+              id="hotel_branch"
+              name="hotel_branch"
+              value="{{ data.hotel_branch }}"
+              readonly
+            />
+          </div>
+
+          <div>
+            <label for="complain">Complaint Message</label>
+            <textarea
+              name="complain"
+              id="complain"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </div>
+          <a href="{% url 'daftar_reservasi_kamar' %}">
+            <button class="button">Back</button>
+          </a>
+          <button class="button" type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
