@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasilitas Hotel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#">Dashboard</a>
+    <a href="#">Kamar Hotel</a>
+    <a href="#">Fasilitas Hotel</a>
+    <a href="#">List Reservasi Hotel</a>
+</nav>
+
+<h1>FASILITAS HOTEL</h1>
+
+<a href="{% url 'tambah_fasilitas' %}">
+    <button>Tambah Fasilitas</button>
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nomor</th>
+            <th>Nama Fasilitas</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="fasilitasTableBody">
+        <!-- Fasilitas akan ditampilkan di sini -->
+    </tbody>
+</table>
+
+<script>
+    // Fungsi untuk menambah fasilitas (dummy function)
+    function tambahFasilitas() {
+        alert("Implementasi penambahan fasilitas belum dibuat.");
+    }
+
+    // Fungsi untuk mengubah fasilitas (dummy function)
+    function ubahFasilitas(nomor) {
+        alert("Implementasi perubahan fasilitas belum dibuat. Nomor fasilitas: " + nomor);
+    }
+
+    // Fungsi untuk menghapus fasilitas (dummy function)
+    function hapusFasilitas(nomor) {
+        alert("Implementasi penghapusan fasilitas belum dibuat. Nomor fasilitas: " + nomor);
+    }
+
+    // Fungsi untuk menampilkan fasilitas pada tabel
+    function tampilkanFasilitas() {
+        // Contoh data fasilitas (dummy data)
+        var fasilitas = [
+            { nomor: 1, nama: "Wifi" },
+            { nomor: 2, nama: "Swimming Pool" },
+            // Tambah data fasilitas sesuai kebutuhan
+        ];
+
+        var tableBody = document.getElementById("fasilitasTableBody");
+
+        // Bersihkan isi tbody terlebih dahulu
+        tableBody.innerHTML = "";
+
+        // Periksa apakah ada fasilitas atau tidak
+        if (fasilitas.length === 0) {
+            var row = tableBody.insertRow();
+            var cell = row.insertCell(0);
+            cell.colSpan = 3;
+            cell.innerHTML = "Belum ada fasilitas";
+        } else {
+            // Tampilkan fasilitas pada tabel
+            fasilitas.forEach(function (fasilitas) {
+                var row = tableBody.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+
+                cell1.innerHTML = fasilitas.nomor;
+                cell2.innerHTML = fasilitas.nama;
+
+                // Tambah tombol ubah
+                var ubahButton = document.createElement("button");
+                ubahButton.innerHTML = "Ubah";
+                ubahButton.onclick = function () {
+                    ubahFasilitas(fasilitas.nomor);
+                };
+                cell3.appendChild(ubahButton);
+
+                // Tambah tombol hapus
+                var hapusButton = document.createElement("button");
+                hapusButton.innerHTML = "Hapus";
+                hapusButton.onclick = function () {
+                    hapusFasilitas(fasilitas.nomor);
+                };
+                cell3.appendChild(hapusButton);
+            });
+        }
+    }
+
+    // Panggil fungsi untuk menampilkan fasilitas saat halaman dimuat
+    tampilkanFasilitas();
+</script>
+
+</body>
+</html>
