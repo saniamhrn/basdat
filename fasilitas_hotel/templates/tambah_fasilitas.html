@@ -1,0 +1,18 @@
+<!-- tambah_fasilitas.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM TAMBAH FASILITAS</title>
+</head>
+<body>
+    <h2>FORM TAMBAH FASILITAS</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Tambah</button>
+    </form>
+</body>
+</html>
