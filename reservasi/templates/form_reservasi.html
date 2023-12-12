@@ -79,8 +79,14 @@
                 <option>E-Wallet</option>
             </select>
             <br><br>
-            <input type="submit" value="Submit">
           </form>
+          <form
+            action="{% url 'reservasi:daftar_reservasi_kamar' %}"
+            method="get"
+            style="display: inline"
+            >
+            <button class="button" type="submit">Submit</button>
+        </form>
     </div>
     
 

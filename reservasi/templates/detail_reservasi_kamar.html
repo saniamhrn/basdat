@@ -1,11 +1,12 @@
+<!-- detail_reservasi.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Dashboard</title>
+    <title>Hotel Room Management</title>
     <style>
+      /* Add your CSS styles for the modal and overlay here */
       .modal {
         display: none;
         position: fixed;
@@ -106,8 +107,7 @@
         border-radius: 10px;
       }
 
-      .button:hover,
-      .button-sm:hover {
+      .button:hover, .button-sm:hover {
         background-color: #7752fe;
       }
 
@@ -133,6 +133,7 @@
       .font-p {
         font-family: "";
       }
+
       .topnav {
         overflow: hidden;
         background-color: #7752fe;
@@ -156,36 +157,92 @@
         background-color: #8e8ffa;
         color: white;
       }
+
+      .text-center {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
-    <h1>Hotel Information</h1>
-    <table>
-      <thead>
+    <div class="topnav">
+      <a class="" href="#dashboard">Dashboard</a>
+      <a class="active" href="#daftarkamar">Reservasi Pengguna</a>
+      <a href="#fasilitas">Pemesanan Kamar</a>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <h1>Daftar Reservasi Kamar</h1>
+    <hr />
+    <!-- <div class="btnAdd"> -->
+    <!-- <button id="addRoomBtn" class="button center">Add Room</button> -->
+    <!-- </div> -->
+
+    <div class="card">
+      <h2 class="text-center">Kamar</h2>
+      <table>
+        <thead class="font-p">
+          <tr>
+            <!-- <th scope="col">Nama Hotel</th>
+                                    <th scope="col">Cabang</th> -->
+            <th scope="col">ID Reservasi</th>
+            <th scope="col">Nomor Kamar</th>
+            <th scope="col">Hotel Name</th>
+            <th scope="col">Hotel Branch</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-p" scope="col">{{ data.rsv_id }}</td>
+            <td class="font-p" scope="col">{{ data.rnum }}</td>
+            <td class="font-p" scope="col">{{ data.rhotelname }}</td>
+            <td class="font-p" scope="col">{{ data.rhotelbranch }}</td>
+            <td class="font-p" scope="col">{{ data.datetime }}</td>
+            <td class="font-p" scope="col">
+              {% if data.isactive %}Active{% else %}Inactive{% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="text-center">Shuttle</h2>
+      {% if data.shuttle_reserve %}
+      <table>
         <tr>
-          <th>Nama Pemilik Hotel</th>
-          <th>Nomor HP</th>
-          <th>Email</th>
-          <th>NIB</th>
-          <th>Hotel Name</th>
-          <th>Hotel Address</th>
+          <th scope="col">ID Reservasi</th>
+          <th scope="col">Nomor Kendaraan</th>
+          <th scope="col">Nomor HP Driver</th>
+          <th scope="col">Tanggal</th>
         </tr>
-      </thead>
-      <tbody>
-        {% for hotel in data_hotel %}
         <tr>
-          <td>{{ hotel.fname }} {{ hotel.lname }}</td>
-          <td>{{ hotel.phonenum }}</td>
-          <td>{{ hotel.email }}</td>
-          <td>{{ hotel.nib }}</td>
-          <td>{{ hotel.hotel_name }} ({{ hotel.hotel_branch }})</td>
-          <td>
-            {{ hotel.street }}, {{ hotel.district }}, {{ hotel.city }}, {{
-            hotel.province }}
-          </td>
+          <td>{{ data.shuttle_reserve.rsv_id }}</td>
+          <td>{{ data.shuttle_reserve.Vehicle_num }}</td>
+          <td>{{ data.shuttle_reserve.Driver_PhoneNum }}</td>
+          <td>{{ data.shuttle_reserve.Datetime }}</td>
         </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      </table>
+
+      {% else %}
+      <p class="text-center">
+        Tidak ada reservasi untuk shuttle pada reservasi ini.
+      </p>
+      {% endif %}
+      <form
+        action="{% url 'reservasi:daftar_reservasi_kamar' %}"
+        method="get"
+        style="display: inline"
+      >
+        <button class="button" type="submit">BACK</button>
+      </form>
+
+      <form
+        action="{% url 'shuttle_reserve:reservasi_shuttle' rsv_id=data.rsv_id %}"
+        method="get"
+        style="display: inline"
+      >
+        <button class="button" type="submit">BUAT RESERVASI SHUTTLE</button>
+      </form>
+    </div>
   </body>
 </html>

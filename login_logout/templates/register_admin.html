@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM REGISTRASI ADMIN</title>
+</head>
+
+<body>
+    <div style="display: table">
+        <div class="div-row">
+            <h1>FORM REGISTRASI ADMIN</h1>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="div-row">
+                <label for="email">Email: </label>
+                <input id="email" type="email" name="email" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="password">Password: </label>
+                <input id="password" type="password" name="password" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="nama">Nama: </label>
+                <input id="nama" type="text" name="nama" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="nomerhp">Nomor HP: </label>
+                <input id="nomerhp" type="text" name="nomerhp" />
+            </div>
+            <br>
+            <div class="div-row">
+                <input class="padded-button" type="submit" value="DAFTAR" />
+            </div>
+        </form>
+        <p>{{message}}</p>
+    </div>
+</body>
+
+</html>
