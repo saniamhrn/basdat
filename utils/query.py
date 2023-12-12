@@ -52,7 +52,7 @@ def query(query_str: str):
     # tmp = connection.cursor()
     with connection.cursor() as cursor:
         try:
-            cursor.execute("SET SEARCH_PATH TO 'SISTEL'")
+            cursor.execute("SET SEARCH_PATH TO SISTEL")
         except Exception as e:
             hasil = e
             connection.rollback()

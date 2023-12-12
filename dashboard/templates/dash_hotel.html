@@ -159,47 +159,33 @@
     </style>
   </head>
   <body>
-    {% for data%}
-    <div class="topnav">
-      <a class="" href="#dashboard">Dashboard</a>
-      <a class="active" href="#daftarkamar">Reservasi Pengguna</a>
-      <a href="#fasilitas">Pemesanan Kamar</a>
-    </div>
-
-    <div id="overlay" class="overlay"></div>
-
-    <table id="customerTable">
-      <head>
-        <h2>Dashboard Customer</h2>
-      </head>
-      <tr>
-        <th class="font-p">Nama Depan</th>
-        <td id="namaDepan"><!-- Add data here --></td>
-      </tr>
-      <tr>
-        <th class="font-p">Nama Belakang</th>
-        <td id="namaBelakang"><!-- Add data here --></td>
-      </tr>
-      <tr>
-        <th class="font-p">Nomor HP</th>
-        <td id="nomorHP"><!-- Add data here --></td>
-      </tr>
-      <tr>
-        <th class="font-p">Email</th>
-        <td id="email"><!-- Add data here --></td>
-      </tr>
-      <tr>
-        <th class="font-p">NIK</th>
-        <td id="nik"><!-- Add data here --></td>
-      </tr>
+    <h1>Hotel Information</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nama Pemilik Hotel</th>
+          <th>Nomor HP</th>
+          <th>Email</th>
+          <th>NIB</th>
+          <th>Hotel Name</th>
+          <th>Hotel Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for hotel in data_hotel %}
+        <tr>
+          <td>{{ hotel.fname }} {{ hotel.lname }}</td>
+          <td>{{ hotel.phonenum }}</td>
+          <td>{{ hotel.email }}</td>
+          <td>{{ hotel.nib }}</td>
+          <td>{{ hotel.hotel_name }} ({{ hotel.hotel_branch }})</td>
+          <td>
+            {{ hotel.street }}, {{ hotel.district }}, {{ hotel.city }}, {{
+            hotel.province }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-
-    <script>
-      document.getElementById("namaDepan").innerText = data.fname;
-      document.getElementById("namaBelakang").innerText = data.lname;
-      document.getElementById("nomorHP").innerText = data.phonenum;
-      document.getElementById("email").innerText = data.email;
-      document.getElementById("nik").innerText = data.nik;
-    </script>
   </body>
 </html>
