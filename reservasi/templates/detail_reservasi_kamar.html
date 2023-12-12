@@ -207,7 +207,7 @@
         </tbody>
       </table>
       <h2 class="text-center">Shuttle</h2>
-      {% if data.shuttle_reserve %}
+      {% if shuttle %}
       <table>
         <tr>
           <th scope="col">ID Reservasi</th>
@@ -216,10 +216,10 @@
           <th scope="col">Tanggal</th>
         </tr>
         <tr>
-          <td>{{ data.shuttle_reserve.rsv_id }}</td>
-          <td>{{ data.shuttle_reserve.Vehicle_num }}</td>
-          <td>{{ data.shuttle_reserve.Driver_PhoneNum }}</td>
-          <td>{{ data.shuttle_reserve.Datetime }}</td>
+          <td>{{ shuttle.rsv_id }}</td>
+          <td>{{ shuttle.vehicle_num }}</td>
+          <td>{{ shuttle.driver_phonenum }}</td>
+          <td>{{ shuttle.datetime }}</td>
         </tr>
       </table>
 
