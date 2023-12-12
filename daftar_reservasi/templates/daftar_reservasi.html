@@ -143,8 +143,8 @@
 <body>
     <div class="topnav">
     
-    <a class="" href="#dashboard">Dashboard</a>
-        <a href="#daftarkamar">Kamar Hotel</a>
+    <a class="" href="{% url 'dashboard:show_hotel' %}">Dashboard</a>
+        <a href="{% url 'kamar_hotel:daftar_kamar' %}">Kamar Hotel</a>
         <a href="#fasilitas">Fasilitas Hotel</a>
         <a class="active" href="">List Reservasi Hotel</a>
     </div>
