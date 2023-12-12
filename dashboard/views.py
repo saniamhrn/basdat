@@ -4,39 +4,31 @@ from utils.query import query
 # Create your views here.
 def show_customer(request):
     data = query(f"""
+                SET search_path TO SISTEL;
                 SELECT U.fname, U.lname, RA.email, RA.phonenum, C.nik
 	            FROM USER_TABLE U
 	            JOIN RESERVATION_ACTOR RA ON U.email = RA.email
                 LEFT JOIN CUSTOMER C ON RA.email = C.email;
                 """)
     context = {
-        "data" : data,
+        "data_cust" : data
     }
     return render(request, "dash_cust.html", context)
 
 def show_hotel(request):
-    data = query(f"""SELECT
-    A.Email AS Owner_Email,
-    A.Fname AS Owner_FirstName,
-    A.Lname AS Owner_LastName,
-    RA.PhoneNum AS Hotel_PhoneNumber,
-    H.Email AS Hotel_Email,
-    H.NIB AS Hotel_NomorIzinUsaha,
-    H.Hotel_Name AS Hotel_Name,
-    H.Hotel_Branch AS Hotel_Branch,
-    H.Street AS Hotel_Street,
-    H.District AS Hotel_District,
-    H.City AS Hotel_City,
-    H.Province AS Hotel_Province
-FROM
-    ADMIN A
-JOIN
-    RESERVATION_ACTOR RA ON A.Email = RA.Admin_email
-JOIN
-    HOTEL H ON RA.Email = H.Email;
-""")
+    data = query(f"""
+                 SELECT 
+                 h.street, h.district, h.city, h.province,
+                 h.hotel_name, h.hotel_branch, h.nib, h.email,
+                 ra.phonenum,
+                 u.fname, u.lname
+                 FROM hotel h
+                 RIGHT JOIN reservation_actor ra ON h.email = ra.email
+                 RIGHT JOIN user_table u ON h.email = u.email
+                 WHERE ra.email LIKE '%.hotel%';
+                 """)
 
     context= {
-        "data" : data,
+        "data_hotel" : data
     }
     return render(request, "dash_hotel.html", context)
