@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM REGISTRASI HOTEL</title>
+</head>
+
+<body>
+    <div style="display: table">
+        <div class="div-row">
+            <h1>FORM REGISTRASI HOTEL</h1>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="div-row">
+                <label for="email">Email: </label>
+                <input id="email" type="email" name="email" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="password">Password: </label>
+                <input id="password" type="password" name="password" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="nama">Nama: </label>
+                <input id="nama" type="text" name="nama" />
+            </div>
+            <br>
+            <br><br>
+            <div class="div-row">
+                <label for="hotel_name">Nama Hotel: </label>
+                <input id="hotel_name" type="text" name="hotel_name" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="hotel_branch">Cabang: </label>
+                <input id="hotel_branch" type="text" name="hotel_branch" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="nomerhp">Nomor Telepon: </label>
+                <input id="nomerhp" type="text" name="nomerhp" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="street">Jalan: </label>
+                <input id="street" type="text" name="street" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="district">Kecamatan: </label>
+                <input id="kecamatan" type="text" name="kecamatan" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="city">Kota: </label>
+                <input id="city" type="text" name="city" />
+            </div>
+            <br>
+            <label for="province">Provinsi: </label>
+            <input id="province" type="text" name="province" />
+            <br><br>
+        
+            <div class="div-row">
+                <input class="padded-button" type="submit" value="DAFTAR" />
+            </div>
+        </form>
+        <p>{{message}}</p>
+
+    </div>
+</body>
+
+</html>

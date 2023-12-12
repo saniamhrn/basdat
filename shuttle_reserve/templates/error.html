@@ -50,27 +50,16 @@
     </style>
 </head>
 <body>
-    <div class="card">
-        <h2 style="text-align: center;">RESERVASI SHUTTLE</h2>
+    <div class="card center">
+        <h4 style="text-align: center;">Room reservation is required to make a shuttle reservation.</h2>
 
-    <form method="post">
-        {% csrf_token %}
-        <label for="idReservasi">ID Reservasi: {{ data.rsv_id }}</label>
-        <label for="kendaraan">Kendaraan:</label>
-        <select id="kendaraan" name="kendaraan">
-            <option value="">--Pilih Kendaraan--</option>
-            <option value="B 1234 ABC">Sedan</option>
-            <option value="B 5678 DEF">SUV</option>
-            <option value="B 9101 GHI">Hatchback</option>
-            <option value="B 2345 JKL">Pickup Truck</option>
-            <option value="B 6789 MNO">Motorcycle</option>
-            <!-- Add more options as needed -->
-        </select>
-        <br><br>
-        <input type="submit" value="Buat Reservasi">
-    </form>
+
+        <form action="{% url 'reservasi:daftar_reservasi_kamar' %}" method="get" style="display: inline;">
+            <button type="submit" class="center">Kembali</button>
+        </form>
     </div>
 
     
 </body>
 </html>
+

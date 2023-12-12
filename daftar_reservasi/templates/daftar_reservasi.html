@@ -158,6 +158,7 @@
                         <!-- </div> -->
 
                         <div class="card">
+                            {% if data %}
                             <table>
                                 <thead class="font-p">
                                 <tr>
@@ -178,14 +179,23 @@
                                         <td class="font-p" scope="col">{{ room.rnum }}</td>
                                         <td class="font-p" scope="col">{{ room.datetime }}</td>
                                         <td class="font-p" scope="col">{% if room.isactive %}Active{% else %}Inactive{% endif %}</td>
-                                        <td class="font-p" scope="col">{{ room.status }}</td>
+                                        <td class="font-p" scope="col">{% if room.status == "confirmed" %}Terkonfirmasi oleh Hotel
+                                          {% elif room.status == "denied" %}Ditolak Pihak Hotel
+                                          {% else %}Menunggu Konfirmasi Pihak Hotel
+                                          {% endif %}</td>
                                         <td>
-                                            <a href="{% url 'update_reservation' rsv_id=room.rsv_id %}">Update</a>
-                                            <a href="{% url 'update_pembayaran' rsv_id=room.rsv_id %}">Update Pembayaran</a>
-                                            <form action="{% url 'update_reservation' rsv_id=room.rsv_id %}" method="post" style="display: inline;">
+                                            <!-- <a href="{% url 'update_reservation' rsv_id=room.rsv_id %}">Update</a> -->
+                                            <!-- <a href="{% url 'update_pembayaran' rsv_id=room.rsv_id %}">Update Pembayaran</a> -->
+                                            <form action="{% url 'update_reservation' rsv_id=room.rsv_id %}" method="get" style="display: inline;">
                                                 {% csrf_token %}
-                                                <button type="submit">Update</button>
+                                                <button type="submit">Update Status</button>
                                             </form>
+                                            <br>
+                                            <form action="{% url 'update_pembayaran' rsv_id=room.rsv_id %}" method="get" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit">Update Pembayaran</button>
+                                            </form>
+                                            <br>
                                             <form action="{% url 'detail_reservation' rsv_id=room.rsv_id %}" method="get" style="display: inline;">
                                                 <button type="submit">Detail</button>
                                             </form>
@@ -198,6 +208,8 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
+                            {% else %}  Tidak ada reservasi
+                            {% endif %}
                         </div>
                         
                         <!-- <div>

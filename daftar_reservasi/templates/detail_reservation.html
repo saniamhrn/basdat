@@ -3,25 +3,101 @@
 <html>
 <head>
     <title>Reservation Detail</title>
+
+    <style>
+        .card {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center {
+            margin: 0;
+            position: relative;
+            left: 50%;
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            width: 50%;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
+    <h1 style="text-align: center;">Reservation Detail</h1>
+    <div class="card">
+        <h2 style="text-align: center;">KAMAR</h2>
+        <table>
+            <tr>
+                <th>Reservation ID</th>
+                <td>{{ data.rsv_id }}</td>
+            </tr>
+            <tr>
+                <th>Room Number</th>
+                <td>{{ data.rnum }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ data.datetime }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{% if data.isactive %}Active{% else %}Inactive{% endif %}</td>
+            </tr>
+        </table>
 
-<h2>Reservation Detail</h2>
-
-<table border="1">
-    <tr>
-        <th>Reservation ID</th>
-        <th>Room Number</th>
-        <th>Date</th>
-        <th>Status</th>
-    </tr>
-    <tr>
-        <td>{{ data.rsv_id }}</td>
-        <td>{{ data.rnum }}</td>
-        <td>{{ data.datetime }}</td>
-        <td>{% if room.isactive %}Active{% else %}Inactive{% endif %}</td>
-    </tr>
-</table>
+        <tr>
+        <h2 style="text-align: center;">SHUTTLE</h2>
+        {{ shuttle.rsv_id }}
+        {% if shuttle %}
+        <table>
+            <tr>
+                <th>Reservation ID</th>
+                <td>{{ shuttle.rsv_id }}</td>
+            </tr>
+            <tr>
+                <th>Nomor Kendaraan</th>
+                <td>{{ shuttle.vehicle_num }}</td>
+            </tr>
+            <tr>
+                <th>No HP Driver</th>
+                <td>{{ shuttle.driver_phonenum }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ shuttle.datetime }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{% if shuttle.isactive %}Active{% else %}Inactive{% endif %}</td>
+            </tr>
+        </table>
+        {% else %} Belum Ada Reservasi Shuttle
+        {% endif %}
+        <br> <br>
+        <form action="{% url 'daftar_reservasi' %}" method="get">
+            <button type="submit" class="center">Kembali</button>
+        </form>
+    </div>
 
 </body>
 </html>
