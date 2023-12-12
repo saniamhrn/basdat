@@ -1,3 +1,4 @@
+<!-- detail_reservasi.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,24 +93,6 @@
         border-radius: 10px;
       }
 
-      .button-sm {
-        border: none;
-        background-color: #8e8ffa;
-        padding: 8px 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 12px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-        border-radius: 10px;
-      }
-
-      .button:hover, .button-sm:hover {
-        background-color: #7752fe;
-      }
-
       .card {
         max-width: 1000px;
         margin: auto;
@@ -156,6 +139,41 @@
         background-color: #8e8ffa;
         color: white;
       }
+
+      .form-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .form-container input,
+      .form-container textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #212121;
+        box-sizing: border-box;
+      }
+
+      .form-container label {
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+      }
+
+      .form-container button {
+        background-color: #8e8ffa;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+      }
+
+      .button:hover {
+        background-color: #7752fe;
+      }
     </style>
   </head>
   <body>
@@ -174,84 +192,72 @@
     <!-- </div> -->
 
     <div class="card">
-      <table>
-        <thead class="font-p">
-          <tr>
-            <!-- <th scope="col">Nama Hotel</th>
-                                    <th scope="col">Cabang</th> -->
-            <th scope="col">ID Reservasi</th>
-            <th scope="col">Nomor Kamar</th>
-            <th scope="col" style="width: 50%">Date</th>
-            <th scope="col">Status Reservasi</th>
-            <th scope="col" style="width: 50%">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for rsv in data %}
-          <tr>
-            <td class="font-p" scope="col">{{ rsv.rsv_id }}</td>
-            <td class="font-p" scope="col">{{ rsv.rnum }}</td>
-            <td class="font-p" scope="col">{{ rsv.datetime }}</td>
-            <td class="font-p" scope="col">
-              {% if rsv.isactive %}Active{% else %}Inactive{% endif %}
-            </td>
-            <td style="display: flex">
-              <form
-                action="{% url 'detail_reservasi' rsv_id=rsv.rsv_id %}"
-                method="get"
-                style="display: inline"
-              >
-                <button class="button-sm" type="submit">Detail</button>
-              </form>
-              {% if rsv.status == 1 %}
-              <button class="button-sm" onclick="showCancellationModal()">
-                Cancel
-              </button>
-              {% else %}
-              <form
-                action="{% url 'cancel_reservasi' rsv_id=rsv.rsv_id %}"
-                method="get"
-                style="display: inline"
-              >
-                <button class="button-sm" type="submit">Cancel</button>
-              </form>
-              {% endif %}
-              <form
-                action="{% url 'complaint_page' rsv_id=rsv.rsv_id %}"
-                method="get"
-                style="display: inline"
-              >
-                <button class="button-sm" type="submit">Complaint</button>
-              </form>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="form-container">
+        <form action="{% url 'save_complaint' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" id="id" name="id" value="{{ data.id }}" readonly />
+          <div>
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              value="{{ data.email }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="{{ data.name }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="hotel_name">Hotel Name</label>
+            <input
+              type="text"
+              id="hotel_name"
+              name="hotel_name"
+              value="{{ data.hotel_name }}"
+              readonly
+            />
+          </div>
+          <div>
+            <label for="hotel_branch">Hotel Branch</label>
+            <input
+              type="text"
+              id="hotel_branch"
+              name="hotel_branch"
+              value="{{ data.hotel_branch }}"
+              readonly
+            />
+          </div>
+
+          <div>
+            <label for="complain">Complaint Message</label>
+            <textarea
+              name="complain"
+              id="complain"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </div>
+          
+          <button class="button" type="submit">Submit</button>
+        </form>
+
+        <form
+          action="{% url 'daftar_reservasi_kamar' %}"
+          method="get"
+          style="display: inline"
+        >
+          <button class="button" type="submit">BACK</button>
+        </form>
+      </div>
     </div>
-
-    <div id="cancelModal" class="modal">
-      <div class="modal-title">Cancellation Not Allowed</div>
-      <p>Cancellation is not allowed for this reservation.</p>
-      <button id="closeModalBtn" class="modal-close button-sm">x</button>
-    </div>
-
-    <script>
-      function showCancellationModal() {
-        var modal = document.getElementById("cancelModal");
-        modal.style.display = "block";
-
-        var closeModalBtn = document.getElementById("closeModalBtn");
-        closeModalBtn.onclick = function () {
-          modal.style.display = "none";
-        };
-
-        window.onclick = function (event) {
-          if (event.target === modal) {
-            modal.style.display = "none";
-          }
-        };
-      }
-    </script>
   </body>
 </html>
