@@ -231,7 +231,7 @@ def register_hotel(request):
                 'message': "Nama harus memiliki nama belakang",
             }
             context = {'message': "Nama harus memiliki nama belakang"}
-            return render(request, "register_restoran.html",context) 
+            return render(request, "register_hotel.html",context) 
 
         # cek email belum terdaftar
         emailCheck = query(f"""

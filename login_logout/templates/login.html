@@ -5,11 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        /* Tambahkan CSS sesuai kebutuhan */
+        .card {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center {
+            margin: 0;
+            position: relative;
+            left: 50%;
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            width: 50%;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
-    <h2>Login Page</h2>
+    <div class="card">
+        <h2>Login Page</h2>
     <form method="POST">
         {% csrf_token %}
         <label for="email">Email:</label><br>
@@ -19,5 +54,7 @@
         <input type="submit" value="LOGIN">
     </form>
     <p>Belum punya akun? <a href="register.html">Register di sini</a>.</p>
+    </div>
+    
 </body>
 </html>
