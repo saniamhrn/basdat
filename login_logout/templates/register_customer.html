@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM REGISTRASI CUSTOMER</title>
+
+    <style>
+        .card {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center {
+            margin: 0;
+            position: relative;
+            left: 50%;
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            width: 50%;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>FORM REGISTRASI CUSTOMER</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="div-row">
+                <label for="email">Email: </label>
+                <input id="email" type="email" name="email" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="password">Password: </label>
+                <input id="password" type="password" name="password" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="fname">Nama Depan: </label>
+                <input id="fname" type="text" name="fname" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="lname">Nama Belakang: </label>
+                <input id="lname" type="text" name="lname" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="nomerhp">Nomor HP: </label>
+                <input id="nomerhp" type="text" name="nomerhp" />
+            </div>
+            <br>
+            <div class="div-row">
+                <label for="nik">NIK: </label>
+                <input id="nik" type="text" name="nik" />
+            </div>
+            <br><br>
+            <div class="div-row">
+                <input class="padded-button" type="submit" value="DAFTAR" />
+            </div>
+        </form>
+        <p>{{message}}</p>
+    </div>
+</body>
+
+</html>

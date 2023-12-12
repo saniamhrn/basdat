@@ -1,170 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Room Management</title>
-    <style>
-        /* Add your CSS styles for the modal and overlay here */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Room Management</title>
+  <style>
+    /* Add your CSS styles for the modal and overlay here */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
 
-        .modal-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+    .modal-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
 
-        .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
 
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
 
-        th, td {
-            padding: 10px;
-            padding-left: 20px;
-            padding-right: 20px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
+    th,
+    td {
+      padding: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
 
-        th {
-            padding-left: 20px;
-            padding-right: 20px;
-            background-color: #8E8FFA;
-        }
+    th {
+      padding-left: 20px;
+      padding-right: 20px;
+      background-color: #8e8ffa;
+    }
 
-        tr:hover {
-            background-color: #C2D9FF;
-        }
+    tr:hover {
+      background-color: #c2d9ff;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            -ms-overflow-style: -ms-autohiding-scrollbar;
-            /* border: 1px solid; */
-            padding: 20px 120px;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+      /* border: 1px solid; */
+      padding: 20px 120px;
+    }
 
-        h1 {
-            text-align: center;
-        }
+    h1 {
+      text-align: center;
+    }
 
-        .button {
-            border: none;
-            background-color: #8E8FFA;
-            padding: 16px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-            border-radius: 10px;
-        }
+    .button {
+      border: none;
+      background-color: #8e8ffa;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      border-radius: 10px;
+    }
 
-        .card {
-            max-width: 1000px;
-            margin: auto;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            display: block;
-            justify-content: center;
-            align-items: center;
-        }
+    .button-sm {
+      border: none;
+      background-color: #8e8ffa;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      border-radius: 10px;
+    }
 
-        .center {
-            margin: 0;
-            position: relative;
-            left: 50%;
-            -ms-transform: translateX(-50%);
-            transform: translateX(-50%);
-        }
+    .card {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      display: block;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .font-p {
-            font-family: '';
-        }
-        
-        .topnav {
-            overflow: hidden;
-            background-color:  #7752FE;
-        }
+    .center {
+      margin: 0;
+      position: relative;
+      left: 50%;
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
 
-        .topnav a {
-            float: left;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
+    .font-p {
+      font-family: "";
+    }
 
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+    .topnav {
+      overflow: hidden;
+      background-color: #7752fe;
+    }
 
-        .topnav a.active {
-            background-color: #8E8FFA;
-            color: white;
-        }
+    .topnav a {
+      float: left;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
 
-    </style>
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .topnav a.active {
+      background-color: #8e8ffa;
+      color: white;
+    }
+
+    .form-container input,
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #212121;
+      box-sizing: border-box;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="topnav">
-        <a class="" href="#Dashboard">Dashboard</a>
-        <a class="active" href="">Kamar Hotel</a>
-        <a href="#fasilitas">Fasilitas Hotel</a>
-        <a href="#ListReservasi">List Reservasi Hotel</a>
-    </div>
-                <h1>Tambah Kamar Hotel</h1>
+  <div class="topnav">
+    <a class="" href="#Dashboard">Dashboard</a>
+    <a class="active" href="">Kamar Hotel</a>
+    <a href="#fasilitas">Fasilitas Hotel</a>
+    <a href="#ListReservasi">List Reservasi Hotel</a>
+  </div>
+  <h1>Tambah Kamar Hotel</h1>
 
-                        <div class="card">
-                            <form >
-                                <label for="nokamar">Nomor Kamar:</label>
-                                <input type="number" id="nokamar" name="nokamar"><br>
-                                <br>
-                                <label for="harga">Harga:</label>
-                                <input type="number" id="harga" name="harga"><br>
-                                <br>
-                                <label for="lantai">Lantai:</label>
-                                <input type="number" id="lantai" name="lantai"><br>
-                                <br><br>
-                                <input type="submit" value="Submit">
-                              </form>
-                        </div>
-
-    
-
+  <div class="card">
+    <form action="" method="post" class="form-container">
+      {% csrf_token %}
+      <label for="nokamar">Nomor Kamar:</label>
+      <input type="number" id="nokamar" name="nokamar" required /><br />
+      <br />
+      <label for="harga">Harga:</label>
+      <input type="number" step="100" id="harga" name="harga" required /><br />
+      <br />
+      <label for="lantai">Lantai:</label>
+      <input type="number" id="lantai" name="lantai" required /><br />
+      <br />
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </div>
 </body>
+
 </html>

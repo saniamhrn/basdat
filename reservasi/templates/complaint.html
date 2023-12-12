@@ -193,7 +193,7 @@
 
     <div class="card">
       <div class="form-container">
-        <form action="{% url 'save_complaint' %}" method="post">
+        <form action="{% url 'reservasi:save_complaint' %}" method="post">
           {% csrf_token %}
           <input type="hidden" id="id" name="id" value="{{ data.id }}" readonly />
           <div>
@@ -251,7 +251,7 @@
         </form>
 
         <form
-          action="{% url 'daftar_reservasi_kamar' %}"
+          action="{% url 'reservasi:daftar_reservasi_kamar' %}"
           method="get"
           style="display: inline"
         >

@@ -1,8 +1,8 @@
 from django.urls import path
-from shuttle_reserve.views import show_shuttle_reserve
+from shuttle_reserve.views import *
 
 app_name = 'shuttle_reserve'
 
 urlpatterns = [
-    path('', show_shuttle_reserve, name='show_shuttle_reserve'),
+    path('<int:rsv_id>/', reservasi_shuttle, name='reservasi_shuttle'),
 ]

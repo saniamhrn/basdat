@@ -1,3 +1,4 @@
+<!-- detail_reservasi.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -156,6 +157,10 @@
         background-color: #8e8ffa;
         color: white;
       }
+
+      .text-center {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -174,6 +179,7 @@
     <!-- </div> -->
 
     <div class="card">
+      <h2 class="text-center">Kamar</h2>
       <table>
         <thead class="font-p">
           <tr>
@@ -181,79 +187,62 @@
                                     <th scope="col">Cabang</th> -->
             <th scope="col">ID Reservasi</th>
             <th scope="col">Nomor Kamar</th>
-            <th scope="col" style="width: 50%">Date</th>
-            <th scope="col">Status Reservasi</th>
-            <th scope="col" style="width: 50%">Action</th>
+            <th scope="col">Hotel Name</th>
+            <th scope="col">Hotel Branch</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
-
         <tbody>
-          {% for rsv in data %}
           <tr>
-            <td class="font-p" scope="col">{{ rsv.rsv_id }}</td>
-            <td class="font-p" scope="col">{{ rsv.rnum }}</td>
-            <td class="font-p" scope="col">{{ rsv.datetime }}</td>
+            <td class="font-p" scope="col">{{ data.rsv_id }}</td>
+            <td class="font-p" scope="col">{{ data.rnum }}</td>
+            <td class="font-p" scope="col">{{ data.rhotelname }}</td>
+            <td class="font-p" scope="col">{{ data.rhotelbranch }}</td>
+            <td class="font-p" scope="col">{{ data.datetime }}</td>
             <td class="font-p" scope="col">
-              {% if rsv.isactive %}Active{% else %}Inactive{% endif %}
-            </td>
-            <td style="display: flex">
-              <form
-
-                action="{% url 'reservasi:detail_reservasi' rsv_id=rsv.rsv_id %}"
-                method="get"
-                style="display: inline"
-              >
-                <button class="button-sm" type="submit">Detail</button>
-              </form>
-              {% if rsv.status == 1 %}
-              <button class="button-sm" onclick="showCancellationModal()">
-                Cancel
-              </button>
-              {% else %}
-              <form
-                action="{% url 'reservasi:cancel_reservasi' rsv_id=rsv.rsv_id %}"
-                method="get"
-                style="display: inline"
-              >
-                <button class="button-sm" type="submit">Cancel</button>
-              </form>
-              {% endif %}
-              <form
-                action="{% url 'reservasi:complaint_page' rsv_id=rsv.rsv_id %}"
-                method="get"
-                style="display: inline"
-              >
-                <button class="button-sm" type="submit">Complaint</button>
-              </form>
+              {% if data.isactive %}Active{% else %}Inactive{% endif %}
             </td>
           </tr>
-          {% endfor %}
         </tbody>
       </table>
+      <h2 class="text-center">Shuttle</h2>
+      {% if shuttle %}
+      <table>
+        <tr>
+          <th scope="col">ID Reservasi</th>
+          <th scope="col">Nomor Kendaraan</th>
+          <th scope="col">Nomor HP Driver</th>
+          <th scope="col">Tanggal</th>
+        </tr>
+        <tr>
+          <td>{{ shuttle.rsv_id }}</td>
+          <td>{{ shuttle.vehicle_num }}</td>
+          <td>{{ shuttle.driver_phonenum }}</td>
+          <td>{{ shuttle.datetime }}</td>
+        </tr>
+      </table>
+
+      {% else %}
+      <p class="text-center">
+        Tidak ada reservasi untuk shuttle pada reservasi ini.
+      </p>
+      {% endif %}
+      <form
+        action="{% url 'reservasi:daftar_reservasi_kamar' %}"
+        method="get"
+        style="display: inline"
+      >
+        <button class="button" type="submit">BACK</button>
+      </form>
+
+      <form
+        action="{% url 'shuttle_reserve:reservasi_shuttle' rsv_id=data.rsv_id %}"
+        method="get"
+        style="display: inline"
+      >
+        <button class="button" type="submit">BUAT RESERVASI SHUTTLE</button>
+      </form>
     </div>
-
-    <div id="cancelModal" class="modal">
-      <div class="modal-title">Cancellation Not Allowed</div>
-      <p>Cancellation is not allowed for this reservation.</p>
-      <button id="closeModalBtn" class="modal-close button-sm">x</button>
-    </div>
-
-    <script>
-      function showCancellationModal() {
-        var modal = document.getElementById("cancelModal");
-        modal.style.display = "block";
-
-        var closeModalBtn = document.getElementById("closeModalBtn");
-        closeModalBtn.onclick = function () {
-          modal.style.display = "none";
-        };
-
-        window.onclick = function (event) {
-          if (event.target === modal) {
-            modal.style.display = "none";
-          }
-        };
-      }
-    </script>
   </body>
 </html>

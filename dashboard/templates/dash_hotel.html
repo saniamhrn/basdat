@@ -1,71 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Dashboard</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
 
-        h2 {
-            color: #333;
-        }
+      .modal-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      }
 
-        th {
-            background-color: #f2f2f2;
-        }
+      th,
+      td {
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: #8e8ffa;
+      }
+
+      tr:hover {
+        background-color: #c2d9ff;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        /* border: 1px solid; */
+        padding: 20px 120px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .button {
+        border: none;
+        background-color: #8e8ffa;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+
+      .button-sm {
+        border: none;
+        background-color: #8e8ffa;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+
+      .button:hover,
+      .button-sm:hover {
+        background-color: #7752fe;
+      }
+
+      .card {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: block;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .center {
+        margin: 0;
+        position: relative;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+      }
+
+      .font-p {
+        font-family: "";
+      }
+      .topnav {
+        overflow: hidden;
+        background-color: #7752fe;
+      }
+
+      .topnav a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .topnav a.active {
+        background-color: #8e8ffa;
+        color: white;
+      }
     </style>
-</head>
-<body>
-
-    <h2>Dashboard Hotel</h2>
+  </head>
+  <body>
+    <h1>Hotel Information</h1>
     <table>
+      <thead>
         <tr>
-            <th>Nama Pemilik Hotel</th>
-            <td><!-- Add data here --></td>
+          <th>Nama Pemilik Hotel</th>
+          <th>Nomor HP</th>
+          <th>Email</th>
+          <th>NIB</th>
+          <th>Hotel Name</th>
+          <th>Hotel Address</th>
         </tr>
+      </thead>
+      <tbody>
+        {% for hotel in data_hotel %}
         <tr>
-            <th>Nomor HP</th>
-            <td><!-- Add data here --></td>
+          <td>{{ hotel.fname }} {{ hotel.lname }}</td>
+          <td>{{ hotel.phonenum }}</td>
+          <td>{{ hotel.email }}</td>
+          <td>{{ hotel.nib }}</td>
+          <td>{{ hotel.hotel_name }} ({{ hotel.hotel_branch }})</td>
+          <td>
+            {{ hotel.street }}, {{ hotel.district }}, {{ hotel.city }}, {{
+            hotel.province }}
+          </td>
         </tr>
-        <tr>
-            <th>Email</th>
-            <td><!-- Add data here --></td>
-        </tr>
-        <tr>
-            <th>Nomor Izin Usaha</th>
-            <td><!-- Add data here --></td>
-        </tr>
-        <tr>
-            <th>Nama Hotel (termasuk nama cabang)</th>
-            <td><!-- Add data here --></td>
-        </tr>
-        <tr>
-            <th>Alamat Hotel</th>
-            <td><!-- Add data here --></td>
-        </tr>
-        <tr>
-            <th>Daftar Kamar Hotel</th>
-            <td><!-- Add data here --></td>
-        </tr>
-        <tr>
-            <th>Daftar Fasilitas Hotel</th>
-            <td><!-- Add data here --></td>
-        </tr>
+        {% endfor %}
+      </tbody>
     </table>
+  </body>
+
+</html>
+
