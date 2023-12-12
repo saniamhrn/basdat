@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RESERVASI KAMAR HOTEL</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      h1 {
+        background-color: #333;
+        color: #fff;
+        padding: 1em 0;
+        margin: 0;
+      }
+      nav {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em 0;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      nav li {
+        margin: 0 1em;
+      }
+      nav a {
+        text-decoration: none;
+        color: #fff;
+      }
+      #search-section {
+        background-color: #f4f4f4;
+        padding: 1em;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5em;
+      }
+      input {
+        width: 100%;
+        padding: 0.5em;
+        margin-bottom: 1em;
+      }
+      button {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+      }
+      #hotel-list {
+        margin-top: 1em;
+      }
+      .hotel-item {
+        border: 1px solid #ddd;
+        padding: 1em;
+        margin-bottom: 1em;
+      }
+      .hotel-name {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .hotel-rating {
+        color: #333;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="dashboard-user.html">Dashboard Pengguna</a></li>
+        <li><a href="reservasi-user.html">Reservasi Pengguna</a></li>
+        <li><a href="pemesanan-kamar.html">Pemesanan Kamar</a></li>
+        <li><a href="logout.html">Logout</a></li>
+      </ul>
+    </nav>
+    <h1>RESERVASI KAMAR HOTEL</h1>
+    <section id="search-section">
+      <label for="min-price">Minimum Price:</label>
+      <form
+        action="{% url 'daftar_hotel' %}"
+        method="get"
+        style="display: inline"
+      >
+        <input
+          type="text"
+          id="min-price"
+          name="min"
+          placeholder="Enter minimum price"
+        />
+        <label for="max-price">Maximum Price:</label>
+        <input
+          type="text"
+          id="max-price"
+          name="max"
+          placeholder="Enter maximum price"
+        />
+        <button type="submit">Search</button>
+      </form>
+    </section>
+    <section id="hotel-list">
+      <!-- List of hotels will be displayed here -->
+      {% if none is None %} {% if data %}
+      <h2>LIST HOTEL YANG SESUAI</h2>
+      {% for room in data %}
+      <form
+        id="{{room.nib}}"
+        method="get"
+        action="{% url 'detail_hotel' nib=room.nib %}"
+      >
+        <a
+          href="javascript:{}"
+          onclick="document.getElementById('{{room.nib}}').submit();"
+          style="text-decoration: none; color: black"
+        >
+          <div class="hotel-item">
+            <div class="hotel-name">{{ room.hotel_name }}</div>
+            <div class="hotel-rating">Rating: {{ room.rating }}</div>
+          </div>
+        </a>
+      </form>
+      {% endfor %} {% else %}
+      <h2>Tidak ada hotel yang sesuai</h2>
+      {% endif %} {% endif %}
+    </section>
+  </body>
+</html>

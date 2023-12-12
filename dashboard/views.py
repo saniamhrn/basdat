@@ -10,6 +10,7 @@ def show_customer(request):
                 LEFT JOIN CUSTOMER C ON C.email = RA.email;
                 """)
     # print(data)
+
     context = {
         "data_cust" : data
     }

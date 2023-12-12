@@ -118,7 +118,6 @@ def detail_reservasi(request, rsv_id):
 def show_shuttle_reserve(request):
     return render(request, "shuttle_reserve.html")
 
-
 def cancel_reservasi(request, rsv_id):
     query(f"""
         UPDATE reservation
@@ -127,7 +126,6 @@ def cancel_reservasi(request, rsv_id):
     """)
 
     return redirect('reservasi:daftar_reservasi_kamar')
-
 
 def complaint_page(request, rsv_id):
     return render(request, "complaint.html", {'id' : rsv_id})
