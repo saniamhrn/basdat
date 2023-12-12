@@ -3,21 +3,46 @@
 <html>
 <head>
     <title>Update Reservation</title>
+    <style>
+        .card {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center {
+            margin: 0;
+            position: relative;
+            left: 50%;
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body>
 
-<h2>Update Reservation</h2>
+<div class="card">
+    <h2>Update Reservation</h2>
+    ID Reservasi : {{ data.rsv_id }} <br>
+    Nomor Kamar : {{ data.rnum }}
+    <form method="post">
+        {% csrf_token %}
+        <label for="new_status">New Status:</label>
+        <select name="new_status">
+            <option value="">--Please choose an option--</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Update">
+    </form> 
+</div>
 
-<form method="post">
-    {% csrf_token %}
-    <label for="new_status">New Status:</label>
-    <select name="new_status">
-        <option value="true">Active</option>
-        <option value="false">Inactive</option>
-    </select>
-    <br><br>
-    <input type="submit" value="Update">
-</form>
 
 </body>
 </html>

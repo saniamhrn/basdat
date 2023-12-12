@@ -16,8 +16,17 @@ def show_daftar_reservasi(request):
                 WHERE RR.rsv_id = RS.id
                 ORDER BY rsv_id ASC;
                 """)
+    # shuttle = query(f""" 
+    #             SELECT RS.rsv_id, RS.vehicle_num, RS.driver_phonenum, RS.datetime, RS.isactive
+    #             FROM RESERVATION_SHUTTLESERVICE RS
+    #             JOIN RESERVATION_ROOM RR ON RR.rsv_id = RS.rsv_id
+    #             ORDER BY RS.rsv_id ASC;
+    #             """)
+    # print(shuttle)
+    print(data)
     context = {
         "data" : data,
+        # "shuttle" : shuttle,
     }
     return render(request, "daftar_reservasi.html",context)
 
@@ -44,13 +53,17 @@ def update_status_reservasi(request, rsv_id):
 def update_pembayaran(request, rsv_id):
     if request.method == 'POST':
         new_status = request.POST.get('new_status')
+        print("masuk sinii")
+        print(f"New Status: {new_status}")
         data = query(f"""
                 UPDATE RESERVATION_STATUS
-                SET status = {new_status}
+                SET status = '{new_status}'
                 WHERE id = '{rsv_id}';
             """) 
+        print(f"SQL Query: {data}")
         return redirect('daftar_reservasi')
     else:
+        print("masuk bawahh")
         data = query(f"""
                 SELECT id, status
                 FROM RESERVATION_STATUS
@@ -68,10 +81,17 @@ def detail_reservation(request, rsv_id):
                 FROM RESERVATION_ROOM
                 WHERE rsv_id = '{rsv_id}';
             """)
+    shuttle = query(f""" 
+                SELECT RS.rsv_id, RS.vehicle_num, RS.driver_phonenum, RS.datetime, RS.isactive
+                FROM RESERVATION_SHUTTLESERVICE RS
+                JOIN RESERVATION_ROOM RR ON RR.rsv_id = RS.rsv_id AND RR.rsv_id = '{rsv_id}'
+                """)
+    print(data[0])
+    print(shuttle[0])
     if not data:
         return HttpResponse("Reservation not found", status=404)
 
-    return render(request, 'detail_reservation.html', {'data': data[0]})
+    return render(request, 'detail_reservation.html', {'data': data[0],'shuttle':shuttle[0]})
         
 
         

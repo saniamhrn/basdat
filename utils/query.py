@@ -4,7 +4,6 @@ import psycopg2
 from psycopg2 import Error
 
 try:
-
     connection = psycopg2.connect(user="postgres",
                         password="dbkelompok1",
                         host="db.bcopynrphwssudrnkhuu.supabase.co",

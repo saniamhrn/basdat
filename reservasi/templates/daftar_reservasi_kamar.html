@@ -199,7 +199,7 @@
             </td>
             <td style="display: flex">
               <form
-                action="{% url 'detail_reservasi' rsv_id=rsv.rsv_id %}"
+                action="{% url 'reservasi:detail_reservasi' rsv_id=rsv.rsv_id %}"
                 method="get"
                 style="display: inline"
               >
@@ -211,7 +211,7 @@
               </button>
               {% else %}
               <form
-                action="{% url 'cancel_reservasi' rsv_id=rsv.rsv_id %}"
+                action="{% url 'reservasi:cancel_reservasi' rsv_id=rsv.rsv_id %}"
                 method="get"
                 style="display: inline"
               >
@@ -219,7 +219,7 @@
               </form>
               {% endif %}
               <form
-                action="{% url 'complaint_page' rsv_id=rsv.rsv_id %}"
+                action="{% url 'reservasi:complaint_page' rsv_id=rsv.rsv_id %}"
                 method="get"
                 style="display: inline"
               >
