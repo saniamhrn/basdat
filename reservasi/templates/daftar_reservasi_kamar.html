@@ -106,8 +106,7 @@
         border-radius: 10px;
       }
 
-      .button:hover,
-      .button-sm:hover {
+      .button:hover, .button-sm:hover {
         background-color: #7752fe;
       }
 
@@ -199,6 +198,7 @@
             </td>
             <td style="display: flex">
               <form
+
                 action="{% url 'reservasi:detail_reservasi' rsv_id=rsv.rsv_id %}"
                 method="get"
                 style="display: inline"

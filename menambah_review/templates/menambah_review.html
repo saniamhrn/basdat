@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tambah Review</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      h1 {
+        background-color: #333;
+        color: #fff;
+        padding: 1em 0;
+        margin: 0;
+      }
+      nav {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em 0;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      nav li {
+        margin: 0 1em;
+      }
+      nav a {
+        text-decoration: none;
+        color: #fff;
+      }
+      #review-form {
+        padding: 1em;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.3em;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.4em;
+        margin-bottom: 0.8em;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="dashboard-user.html">Dashboard Pengguna</a></li>
+        <li><a href="reservasi-user.html">Reservasi Pengguna</a></li>
+        <li><a href="pemesanan-kamar.html">Pemesanan Kamar</a></li>
+        <li><a href="logout.html">Logout</a></li>
+      </ul>
+    </nav>
+    <h1>REVIEW</h1>
+    <section id="review-form">
+      <form
+        method="post"
+        action="{% url 'menambah_review' hotel_name=hotel.hotel_name %}"
+      >
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input
+          type="text"
+          id="email"
+          name="cust_email"
+          value="Crystal_Edwards8371@yfxpw.info"
+          readonly
+        />
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" value="Edward" readonly />
+        <label for="rating">Rating:</label>
+        <input
+          type="number"
+          id="rating"
+          name="rating"
+          class="numInput"
+          required
+        />
+        <label for="review">Review:</label>
+        <textarea id="review" name="review" rows="4" required></textarea>
+        <input
+          type="hidden"
+          name="hotel_branch"
+          value="{{hotel.hotel_branch}}"
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </body>
+  <script>
+    document
+      .getElementsByClassName("numInput")[0]
+      .addEventListener("keyup", function (e) {
+        if (e.target.value > 5) {
+          this.value = 5;
+        } else if (e.target.value.length && e.target.value <= 0) {
+          this.value = 1;
+        }
+      });
+  </script>
+</html>

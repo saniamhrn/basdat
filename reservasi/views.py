@@ -124,7 +124,6 @@ def cancel_reservasi(request, rsv_id):
         SET status = 6
         WHERE rsv_id = '{rsv_id}';
     """)
-
     return redirect('reservasi:daftar_reservasi_kamar')
 
 def complaint_page(request, rsv_id):

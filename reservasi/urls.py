@@ -9,6 +9,6 @@ urlpatterns = [
     path('detail_reservasi/<int:rsv_id>/', detail_reservasi, name='detail_reservasi'),
     path('cancel_reservasi/<int:rsv_id>/', cancel_reservasi, name='cancel_reservasi'),
     path('complaint/<int:rsv_id>/', complaint_page, name='complaint_page'),
-    path('save_complaint/', views.save_complaint, name='save_complaint'),
+    path('save_complaint/', save_complaint, name='save_complaint'),
     # Add more URLs for room creation, updating, etc.
 ]
