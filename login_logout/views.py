@@ -163,21 +163,6 @@ def register_customer(request):
         lname = request.POST.get('lname')
         nomerhp = request.POST.get('nomerhp')
         nik = request.POST.get('nik')
-        # nama_bank = request.POST.get('nama_bank')
-        # nomor_rekening = request.POST.get('nomor_rekening')
-        
-        # attr subclass
-        # tanggal_lahir = request.POST.get('tanggal_lahir')
-        # jenis_kelamin = "M" if request.POST.get('jenis_kelamin') == "Laki-Laki" else "F"
-        
-        # cek tidak ada nama belakang
-        # if " " in nama:
-        #     nama = request.POST.get('nama').split(" ",1)
-        #     fname = nama[0]
-        #     lname = nama[1]
-        # else:
-        #     context = {'message': "Nama harus memiliki nama belakang"}
-        #     return render(request, "register_customer.html",context) 
         
         # cek email belum terdaftar
         emailCheck = query(f"""

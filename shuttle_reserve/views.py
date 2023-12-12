@@ -29,8 +29,6 @@ def reservasi_shuttle(request,rsv_id):
             if not data:
                 return HttpResponse("Reservation not found", status=404)
     else:
-        # messages.error(request, 'Room reservation is required to make a shuttle reservation.')
-        # return HttpResponse("Reservation is not active", status=404)
         return render(request,'error.html')
     
     return render(request, 'shuttle_reserve.html', {'data': data[0]})
