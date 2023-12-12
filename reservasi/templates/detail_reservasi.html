@@ -93,7 +93,21 @@
         border-radius: 10px;
       }
 
-      .button:hover {
+      .button-sm {
+        border: none;
+        background-color: #8e8ffa;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+
+      .button:hover, .button-sm:hover {
         background-color: #7752fe;
       }
 
@@ -143,6 +157,10 @@
         background-color: #8e8ffa;
         color: white;
       }
+
+      .text-center {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -154,15 +172,19 @@
 
     <div id="overlay" class="overlay"></div>
 
-    <h1>Detail Reservasi</h1>
+    <h1>Daftar Reservasi Kamar</h1>
     <hr />
+    <!-- <div class="btnAdd"> -->
+    <!-- <button id="addRoomBtn" class="button center">Add Room</button> -->
+    <!-- </div> -->
 
     <div class="card">
-      <h2>Detail Kamar</h2>
-
+      <h2 class="text-center">Kamar</h2>
       <table>
         <thead class="font-p">
           <tr>
+            <!-- <th scope="col">Nama Hotel</th>
+                                    <th scope="col">Cabang</th> -->
             <th scope="col">ID Reservasi</th>
             <th scope="col">Nomor Kamar</th>
             <th scope="col">Hotel Name</th>
@@ -178,47 +200,49 @@
             <td class="font-p" scope="col">{{ data.rhotelname }}</td>
             <td class="font-p" scope="col">{{ data.rhotelbranch }}</td>
             <td class="font-p" scope="col">{{ data.datetime }}</td>
-            <td class="font-p" scope="col">{% if data.isactive %}Active{% else %}Inactive{% endif %}</td>
+            <td class="font-p" scope="col">
+              {% if data.isactive %}Active{% else %}Inactive{% endif %}
+            </td>
           </tr>
         </tbody>
       </table>
-
-    <h2>Detail Shuttle</h2>
-    {% if data.shuttle_reserve %}
-    <!--<table border="1">
+      <h2 class="text-center">Shuttle</h2>
+      {% if data.shuttle_reserve %}
+      <table>
         <tr>
-            <th scope="col">ID Reservasi</th>
-            <th scope="col">Nomor Kendaraan</th>
-            <th scope="col">Nomor HP Driver</th>
-            <th scope="col">Tanggal</th>
+          <th scope="col">ID Reservasi</th>
+          <th scope="col">Nomor Kendaraan</th>
+          <th scope="col">Nomor HP Driver</th>
+          <th scope="col">Tanggal</th>
         </tr>
         <tr>
-            <td>{{ data.shuttle_reserve.rsv_id }}</td>
-            <td>{{ data.shuttle_reserve.Vehicle_num }}</td>
-            <td>{{ data.shuttle_reserve.Driver_PhoneNum }}</td>
-            <td>{{ data.shuttle_reserve.Datetime }}</td>
+          <td>{{ data.shuttle_reserve.rsv_id }}</td>
+          <td>{{ data.shuttle_reserve.Vehicle_num }}</td>
+          <td>{{ data.shuttle_reserve.Driver_PhoneNum }}</td>
+          <td>{{ data.shuttle_reserve.Datetime }}</td>
         </tr>
-    </table>
-    -->
-    {% else %}
-        <p>Tidak ada reservasi untuk shuttle pada reservasi ini.</p>
-    {% endif %}
+      </table>
 
-    <form
-      action="{% url 'daftar_reservasi_kamar' %}"
-      method="get"
-      style="display: inline"
-    >
-      <button class="button" type="submit">BACK</button>
-    </form>
+      {% else %}
+      <p class="text-center">
+        Tidak ada reservasi untuk shuttle pada reservasi ini.
+      </p>
+      {% endif %}
+      <form
+        action="{% url 'daftar_reservasi_kamar' %}"
+        method="get"
+        style="display: inline"
+      >
+        <button class="button" type="submit">BACK</button>
+      </form>
 
-    <form
-      action="{% url 'shuttle_reserve:show_shuttle_reserve' %}"
-      method="get"
-      style="display: inline"
-    >
-      <button class="button" type="submit">BUAT RESERVASI SHUTTLE</button>
-    </form>
+      <form
+        action="{% url 'shuttle_reserve:show_shuttle_reserve' %}"
+        method="get"
+        style="display: inline"
+      >
+        <button class="button" type="submit">BUAT RESERVASI SHUTTLE</button>
+      </form>
     </div>
   </body>
 </html>
