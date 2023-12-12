@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hotel Room Management</title>
     <style>
         /* Add your CSS styles for the modal and overlay here */
@@ -42,7 +43,8 @@
             z-index: 999;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             padding-left: 20px;
             padding-right: 20px;
@@ -53,11 +55,11 @@
         th {
             padding-left: 20px;
             padding-right: 20px;
-            background-color: #8E8FFA;
+            background-color: #8e8ffa;
         }
 
         tr:hover {
-            background-color: #C2D9FF;
+            background-color: #c2d9ff;
         }
 
         table {
@@ -79,12 +81,26 @@
 
         .button {
             border: none;
-            background-color: #8E8FFA;
+            background-color: #8e8ffa;
             padding: 16px 32px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .button-sm {
+            border: none;
+            background-color: #8e8ffa;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
             margin: 4px 2px;
             transition-duration: 0.4s;
             cursor: pointer;
@@ -111,12 +127,12 @@
         }
 
         .font-p {
-            font-family: '';
+            font-family: "";
         }
-        
+
         .topnav {
             overflow: hidden;
-            background-color:  #7752FE;
+            background-color: #7752fe;
         }
 
         .topnav a {
@@ -134,12 +150,22 @@
         }
 
         .topnav a.active {
-            background-color: #8E8FFA;
+            background-color: #8e8ffa;
             color: white;
         }
 
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #212121;
+            box-sizing: border-box;
+        }
     </style>
 </head>
+
 <body>
     <div class="topnav">
         <a class="" href="#Dashboard">Dashboard</a>
@@ -147,24 +173,22 @@
         <a href="#fasilitas">Fasilitas Hotel</a>
         <a href="#ListReservasi">List Reservasi Hotel</a>
     </div>
-                <h1>Tambah Fasilitas Kamar Hotel</h1>
+    <h1>Tambah Fasilitas Kamar Hotel</h1>
 
-                        <div class="card">
-                            <form >
-                                <label for="nokamar">Nomor Kamar:</label>
-                                <input type="number" id="nokamar" name="nokamar"><br>
-                                <br>
-                                <label for="lantai">Lantai:</label>
-                                <input type="number" id="harga" name="lantai"><br>
-                                <br>
-                                <label for="fasilitas">Nama Fasilitas:</label>
-                                <input type="text" id="fasilitas" name="fasilitas"><br>
-                                <br><br>
-                                <input type="submit" value="Submit">
-                              </form>
-                        </div>
-
-    
-
+    <div class="card">
+        <form class="form-container">
+            <label for="nokamar">Nomor Kamar:</label>
+            <input type="number" id="nokamar" name="nokamar" /><br />
+            <br />
+            <label for="lantai">Lantai:</label>
+            <input type="number" id="harga" name="lantai" /><br />
+            <br />
+            <label for="fasilitas">Nama Fasilitas:</label>
+            <input type="text" id="fasilitas" name="fasilitas" /><br />
+            <br /><br />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
 </body>
+
 </html>

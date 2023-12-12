@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'kamar_hotel',
     'reservasi',
     'fasilitas_hotel',
+    'daftar_hotel',
+    'menambah_review',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Detail</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      h1 {
+        background-color: #333;
+        color: #fff;
+        padding: 1em 0;
+        margin: 0;
+      }
+      #hotel-detail {
+        padding: 1em;
+      }
+      #room-table {
+        margin-top: 1em;
+        width: 100%;
+        border-collapse: collapse;
+      }
+      #room-table th,
+      #room-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      #room-table th {
+        background-color: #f4f4f4;
+      }
+      #reservation-btn {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+      }
+      #review-btn {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5em 1em;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{data.hotel_name}}</h1>
+    <section id="hotel-detail">
+      <p>Nama Hotel: {{data.hotel_name}}</p>
+      <p>Deskripsi hotel: {{data.description}}</p>
+      <p>NIB: {{data.nib}}</p>
+      <p>Rating: {{data.rating}}</p>
+      <p>Star: {{data.star}}</p>
+      <p>
+        Alamat: {{data.street}} {{data.district}} {{data.city}}
+        {{data.province}}
+      </p>
+      <p>Min Check In: {{data.min_checkout}}</p>
+      <p>Max Check Out: {{data.max_checkout}}</p>
+    </section>
+    <form
+      action="{% url 'menambah_review' hotel_name=data.hotel_name %}"
+      method="get"
+      style="display: inline"
+    >
+      <button id="review-btn" type="submit">LEAVE REVIEW</button>
+    </form>
+    <section>
+      <h2>Kamar Tersedia</h2>
+      <table id="room-table">
+        <thead>
+          <tr>
+            <th>Nomor Kamar</th>
+            <th>Fasilitas Kamar</th>
+            <th>Harga per Malam</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for room in rooms %}
+          <tr>
+            <td>{{room.number}}</td>
+            <td>{{room.id}}</td>
+            <td>{{room.price}}</td>
+            <td><button onclick="reserveRoom()">Reservasi</button></td>
+          </tr>
+          {% endfor %}
+          <!-- Tambahkan baris kamar lainnya sesuai kebutuhan -->
+        </tbody>
+      </table>
+    </section>
+    <script>
+      function reserveRoom() {
+        // Implement logic for room reservation
+        alert("Room reserved!");
+      }
+    </script>
+  </body>
+</html>

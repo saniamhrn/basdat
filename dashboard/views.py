@@ -4,12 +4,13 @@ from utils.query import query
 # Create your views here.
 def show_customer(request):
     data = query(f"""
-                SET search_path TO SISTEL;git
                 SELECT U.fname, U.lname, RA.email, RA.phonenum, C.nik
-	            FROM user_table U
-	            JOIN reservation_actor RA ON U.email = RA.email
-                LEFT JOIN customer C ON RA.email = C.email;
+                FROM user_table U
+                JOIN RESERVATION_ACTOR RA ON RA.email = U.email 
+                LEFT JOIN CUSTOMER C ON C.email = RA.email;
                 """)
+    # print(data)
+
     context = {
         "data_cust" : data
     }

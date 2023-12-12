@@ -28,7 +28,7 @@ def show_daftar_reservasi(request):
         "data" : data,
         # "shuttle" : shuttle,
     }
-    return render(request, "daftar_reservasi.html",context)
+    return render(request, "daftar_reservasi.html", context)
 
 def update_status_reservasi(request, rsv_id):
     if request.method == 'POST':

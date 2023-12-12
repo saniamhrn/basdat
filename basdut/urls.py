@@ -25,6 +25,8 @@ urlpatterns = [
     path('daftar-reservasi/', include('daftar_reservasi.urls')),
     path('kamar_hotel/', include('kamar_hotel.urls')),
     path('reservasi/', include('reservasi.urls')),
+    path('daftar_hotel/', include('daftar_hotel.urls')),
+    path('menambah_review/', include('menambah_review.urls')),
     path('reservasi-shuttle/', include('shuttle_reserve.urls')),
     path('fasilitas_hotel/', include('fasilitas_hotel.urls')),
 ]
