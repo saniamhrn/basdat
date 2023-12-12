@@ -4,7 +4,8 @@ from utils.query import query
 def reservasi(request):
     return render(request, "form_reservasi.html")
 
-def show_reservasi_kamar(request, custemail = 'Crystal_Edwards8371@yfxpw.info'):
+
+def show_reservasi_kamar(request, custemail = 'Eduardo_Greenwood7181@1kmd3.site'):
     data = query(f""" 
                 SELECT rr.rsv_id, rr.rNum, rr.Datetime, rr.isActive
                 FROM reservation r
@@ -31,7 +32,6 @@ def detail_reservasi(request, rsv_id):
 def show_shuttle_reserve(request):
     return render(request, "shuttle_reserve.html")
 
-
 def cancel_reservasi(request, rsv_id):
     query(f"""
         UPDATE reservation
@@ -40,7 +40,6 @@ def cancel_reservasi(request, rsv_id):
     """)
 
     return redirect('daftar_reservasi_kamar')
-
 
 def complaint_page(request, rsv_id):
     return render(request, "complaint.html", {'id' : rsv_id})
