@@ -5,7 +5,7 @@ from utils.query import query
 def show_daftar_reservasi(request):
     data = query(f""" 
                 SELECT RR.rsv_id, RR.rnum, RR.datetime, RS.status, RR.isactive
-                FROM RESERVATION_ROOM RR, RESERVATION_STATUS RS
+                FROM "SISTEL".RESERVATION_ROOM RR, "SISTEL".RESERVATION_STATUS RS
                 WHERE RR.rsv_id = RS.id
                 ORDER BY rsv_id ASC;
                 """)
