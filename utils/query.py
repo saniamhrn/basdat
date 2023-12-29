@@ -4,6 +4,7 @@ import psycopg2
 from psycopg2 import Error
 
 try:
+
     connection = psycopg2.connect(user="postgres",
                         password="dbkelompok1",
                         host="db.bcopynrphwssudrnkhuu.supabase.co",
@@ -51,7 +52,7 @@ def query(query_str: str):
     # tmp = connection.cursor()
     with connection.cursor() as cursor:
         try:
-            cursor.execute("SET SEARCH_PATH TO SISTEL")
+            cursor.execute("SET SEARCH_PATH TO 'SISTEL'")
         except Exception as e:
             hasil = e
             connection.rollback()
@@ -73,7 +74,5 @@ def query(query_str: str):
             # Ga tau error apa
             hasil = e
             connection.rollback()
-
-    connection.close()
 
     return hasil
